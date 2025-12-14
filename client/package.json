@@ -13,10 +13,12 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@react-router/node": "latest",
     "@react-router/serve": "latest",
     "isbot": "latest",
+    "prettier": "^3.7.4",
     "react": "latest",
     "react-dom": "latest",
     "react-router": "latest"

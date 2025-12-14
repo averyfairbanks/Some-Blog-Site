@@ -1,6 +1,6 @@
-import { reactRouter } from '@react-router/dev/vite';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { reactRouter } from "@react-router/dev/vite";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [reactRouter(), tsconfigPaths()],
@@ -9,8 +9,8 @@ export default defineConfig({
     // Without this, the React context will be different between direct import and transitive imports in development environment
     // For more information, see https://github.com/mui/material-ui/issues/45878#issuecomment-2987441663
     optimizeDeps: {
-      include: ['@emotion/*', '@mui/*'],
+      include: ["@emotion/*", "@mui/*"],
     },
-    noExternal: ['@emotion/*', '@mui/*'],
+    noExternal: ["@emotion/*", "@mui/*"],
   },
 });

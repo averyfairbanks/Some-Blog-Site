@@ -1,14 +1,14 @@
-import { Transform } from 'node:stream';
+import { Transform } from "node:stream";
 
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
-import type { EntryContext } from 'react-router';
-import { ServerRouter } from 'react-router';
-import { createReadableStreamFromReadable } from '@react-router/node';
-import { isbot } from 'isbot';
-import createEmotionServer from '@emotion/server/create-instance';
-import { CacheProvider } from '@emotion/react';
-import createEmotionCache from './createCache';
+import * as React from "react";
+import * as ReactDOMServer from "react-dom/server";
+import type { EntryContext } from "react-router";
+import { ServerRouter } from "react-router";
+import { createReadableStreamFromReadable } from "@react-router/node";
+import { isbot } from "isbot";
+import createEmotionServer from "@emotion/server/create-instance";
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from "./lib/createCache";
 
 export const streamTimeout = 5_000;
 
@@ -19,16 +19,19 @@ export default function handleRequest(
   routerContext: EntryContext,
 ) {
   const cache = createEmotionCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
 
   return new Promise((resolve, reject) => {
     let shellRendered = false;
-    const userAgent = request.headers.get('user-agent');
+    const userAgent = request.headers.get("user-agent");
 
     // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
     // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
     const readyOption: keyof ReactDOMServer.RenderToPipeableStreamOptions =
-      (userAgent && isbot(userAgent)) || routerContext.isSpaMode ? 'onAllReady' : 'onShellReady';
+      (userAgent && isbot(userAgent)) || routerContext.isSpaMode
+        ? "onAllReady"
+        : "onShellReady";
 
     const { pipe, abort } = ReactDOMServer.renderToPipeableStream(
       <CacheProvider value={cache}>
@@ -53,10 +56,15 @@ export default function handleRequest(
               const html = Buffer.concat(chunks).toString();
 
               // Extract emotion styles from the collected HTML
-              const styles = constructStyleTagsFromChunks(extractCriticalToChunks(html));
+              const styles = constructStyleTagsFromChunks(
+                extractCriticalToChunks(html),
+              );
 
               if (styles) {
-                const injectedHtml = html.replace('</head>', `${styles}</head>`);
+                const injectedHtml = html.replace(
+                  "</head>",
+                  `${styles}</head>`,
+                );
                 this.push(injectedHtml);
               } else {
                 this.push(html);
@@ -68,7 +76,7 @@ export default function handleRequest(
 
           const stream = createReadableStreamFromReadable(transformStream);
 
-          responseHeaders.set('Content-Type', 'text/html');
+          responseHeaders.set("Content-Type", "text/html");
 
           resolve(
             new Response(stream, {

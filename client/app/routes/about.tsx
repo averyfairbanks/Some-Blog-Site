@@ -1,45 +1,48 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { Link as ReactRouterLink } from 'react-router';
-import ProTip from '~/components/ProTip';
-import Copyright from '~/components/Copyright';
+import * as React from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { Link as ReactRouterLink } from "react-router";
+import ProTip from "~/components/footer/ProTip";
+import Copyright from "~/components/footer/Copyright";
+import BlogAppBar from "~/components/app-bar/BlogAppBar";
 
 export function meta() {
   return [
-    { title: 'About' },
+    { title: "About" },
     {
-      name: 'description',
-      content: 'About the project',
+      name: "description",
+      content: "About the project",
     },
   ];
 }
 
 export default function About() {
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI - React Router example in TypeScript
-        </Typography>
-        <Box sx={{ maxWidth: 'sm' }}>
-          <Button variant="contained" component={ReactRouterLink} to="/">
-            Go to the home page
-          </Button>
+    <>
+      <BlogAppBar />
+      <Container maxWidth="lg" sx={{ paddingTop: 10 }}>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+            Material UI - React Router example in TypeScript
+          </Typography>
+          <Box sx={{ maxWidth: "sm", mb: 3 }}>
+            <Button variant="contained" component={ReactRouterLink} to="/">
+              Go to the home page
+            </Button>
+          </Box>
+          <Copyright />
         </Box>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+      </Container>
+    </>
   );
 }
