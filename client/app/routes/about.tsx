@@ -1,12 +1,10 @@
-import * as React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import { Link as ReactRouterLink } from "react-router";
-import ProTip from "~/components/footer/ProTip";
-import Copyright from "~/components/footer/Copyright";
 import BlogAppBar from "~/components/app-bar/BlogAppBar";
+import Copyright from "~/components/footer/Copyright";
 
 export function meta() {
   return [

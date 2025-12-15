@@ -5,6 +5,10 @@ import Container from "@mui/material/Container";
 import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import ColorModeIconDropdown from "./ColorModeIconDropdown";
+import { useNavigate } from "react-router";
+import { Link as ReactRouterLink } from "react-router";
+import { SvgIcon } from "@mui/material";
+import SitemarkIcon from "../sitemark/SitemarkIcon";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -39,34 +43,25 @@ export default function BlogAppBar() {
           <Box
             sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
           >
+            <SitemarkIcon />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <Button variant="text" color="info" size="small">
-                Features
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Testimonials
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Highlights
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Pricing
-              </Button>
               <Button
                 variant="text"
                 color="info"
                 size="small"
                 sx={{ minWidth: 0 }}
               >
-                FAQ
-              </Button>
+                Home
+              </Button>{" "}
               <Button
+                component={ReactRouterLink}
+                to="/about"
                 variant="text"
                 color="info"
                 size="small"
                 sx={{ minWidth: 0 }}
               >
-                Blog
+                About
               </Button>
             </Box>
           </Box>
