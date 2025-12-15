@@ -4,11 +4,9 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
-import ColorModeIconDropdown from "./ColorModeIconDropdown";
-import { useNavigate } from "react-router";
-import { Link as ReactRouterLink } from "react-router";
-import { SvgIcon } from "@mui/material";
+import { Link as RouterLink } from "react-router";
 import SitemarkIcon from "../sitemark/SitemarkIcon";
+import ColorModeIconDropdown from "../shared/ColorModeIconDropdown";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -46,6 +44,8 @@ export default function BlogAppBar() {
             <SitemarkIcon />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Button
+                component={RouterLink}
+                to="/"
                 variant="text"
                 color="info"
                 size="small"
@@ -54,7 +54,7 @@ export default function BlogAppBar() {
                 Home
               </Button>{" "}
               <Button
-                component={ReactRouterLink}
+                component={RouterLink}
                 to="/about"
                 variant="text"
                 color="info"
@@ -72,10 +72,22 @@ export default function BlogAppBar() {
               alignItems: "center",
             }}
           >
-            <Button color="primary" variant="text" size="small">
+            <Button
+              component={RouterLink}
+              to="/sign-in"
+              color="primary"
+              variant="text"
+              size="small"
+            >
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small">
+            <Button
+              component={RouterLink}
+              to="/sign-up"
+              color="primary"
+              variant="contained"
+              size="small"
+            >
               Sign up
             </Button>
             <ColorModeIconDropdown />
