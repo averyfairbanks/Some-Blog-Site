@@ -14,7 +14,7 @@ export default function Copyright() {
       }}
     >
       {"Copyright © "}
-      <MuiLink color="inherit" href="https://averyf.dev">
+      <MuiLink color="inherit" href="https://averyf.dev" target="_blank">
         Some Blog Site
       </MuiLink>{" "}
       {new Date().getFullYear()}.
