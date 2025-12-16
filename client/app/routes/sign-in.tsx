@@ -16,6 +16,7 @@ import SitemarkIcon from "~/components/sitemark/SitemarkIcon";
 import ColorModeSelect from "../components/shared/ColorModeIconDropdown";
 import { GoogleIcon } from "../components/sign-in/CustomIcons";
 import ForgotPassword from "../components/sign-in/ForgotPassword";
+import Stack from "@mui/material/Stack";
 
 export function meta() {
   return [{ title: "Sign-in" }];
@@ -82,14 +83,16 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
           sx={{ position: "fixed", top: "1rem", right: "1rem" }}
         />
         <StyledCard variant="outlined">
-          <SitemarkIcon height={50}/>
-          <Typography
-            component="h1"
-            variant="h4"
-            sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
-          >
-            Sign in
-          </Typography>
+         <Stack direction="row" alignItems="center" gap={2}>
+            <SitemarkIcon height={45}/>
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
+            >
+              Sign In
+            </Typography>
+          </Stack>
           <Box
             component="form"
             onSubmit={handleSubmit}
